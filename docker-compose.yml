@@ -1,9 +1,67 @@
-version: "3.9"
+services:
 
-name: smart-callcenter
+  whoami:
+    image: traefik/whoami
+    container_name: whoami
+
+    ports:
+      - "8080:80"
+
+    networks:
+      - backend
+
+
+  mongodb:
+
+    image: mongo:7
+
+    container_name: mongodb
+
+    restart: always
+
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+
+    volumes:
+      - mongo_data:/data/db
+
+    networks:
+      - backend
+
+  redis:
+    image: redis:7
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - backend 
+
+
+  gateway:
+
+    build: ./gateway-service
+
+    container_name: gateway
+
+    ports:
+      - "8000:8000"
+
+    depends_on:
+      - mongodb
+      - redis
+
+    networks:
+      - backend
+
+
+volumes:
+
+  mongo_data:
+
 
 networks:
+
   backend:
     driver: bridge
-
-services:
