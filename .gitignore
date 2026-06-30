@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+
+# Variables de entorno
+.env
+
+# VSCode
+.vscode/
+
+# Logs
+logs/
+*.log
+
+# Docker
+*.pid
+
+# Bases de datos locales
+mongo_data/
+redis_data/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
