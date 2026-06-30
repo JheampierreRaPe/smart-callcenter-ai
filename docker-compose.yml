@@ -36,7 +36,7 @@ services:
     ports:
       - "6379:6379"
     networks:
-      - backend 
+      - backend
 
 
   gateway:
@@ -54,6 +54,17 @@ services:
 
     networks:
       - backend
+
+
+
+  transcription:
+    build: ./transcription-service
+    container_name: transcription
+    ports:
+      - "8001:8001"
+    networks:
+      - backend
+
 
 
 volumes:

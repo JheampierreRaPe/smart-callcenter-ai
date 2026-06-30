@@ -3,3 +3,4 @@ uvicorn
 redis
 pymongo
 python-dotenv
+httpx

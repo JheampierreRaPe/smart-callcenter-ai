@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-
+from app.enums.call_status import CallStatus
 
 class CallCreate(BaseModel):
 
@@ -8,3 +8,5 @@ class CallCreate(BaseModel):
     agent: str
 
     customer: str
+
+    status: CallStatus = CallStatus.RINGING
