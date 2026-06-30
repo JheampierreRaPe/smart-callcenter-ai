@@ -19,6 +19,12 @@ logs/
 # Docker
 *.pid
 
+
+mongo_data/
+
+redis_data/
+
+asterisk_data/
 # Bases de datos locales
 mongo_data/
 redis_data/

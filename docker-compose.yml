@@ -1,0 +1,9 @@
+version: "3.9"
+
+name: smart-callcenter
+
+networks:
+  backend:
+    driver: bridge
+
+services:
