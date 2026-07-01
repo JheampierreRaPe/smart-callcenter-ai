@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+from app.schemas.transcription import TranscriptionRequest
 
 router = APIRouter()
 
@@ -12,8 +13,9 @@ def home():
 
 
 @router.post("/transcribe")
-def transcribe():
+def transcribe(request: TranscriptionRequest):
 
     return {
-        "transcription": "Hola, gracias por llamar. ¿En qué puedo ayudarle?"
+       "audio_file": request.audio_file,
+       "transcription": "Hola, gracias por llamar. ¿En qué puedo ayudarle?"
     }
