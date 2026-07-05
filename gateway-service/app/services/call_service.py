@@ -1,5 +1,6 @@
 from app.repositories.redis_repository import RedisRepository
 from app.repositories.mongo_repository import MongoRepository
+from app.clients.transcription_client import TranscriptionClient
 from datetime import datetime
 
 class CallService:
@@ -8,6 +9,7 @@ class CallService:
 
         self.redis = RedisRepository()
         self.mongo = MongoRepository()
+        self.transcription = TranscriptionClient()
 
 
     def create_call(self, call):
@@ -46,6 +48,10 @@ class CallService:
         call["duration_seconds"] = duration
 
         call["audio_file"] = f"recordings/{call_id}.wav"
+
+        result = self.transcription.transcribe(call["audio_file"])
+
+        call["transcription"] = result["transcription"]
 
         self.mongo.save_call(call)
 

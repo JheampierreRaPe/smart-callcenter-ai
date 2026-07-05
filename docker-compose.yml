@@ -66,6 +66,24 @@ services:
       - backend
 
 
+  asterisk:
+    image: mlan/asterisk:latest
+    container_name: asterisk
+
+    ports:
+      - "5060:5060/udp"
+      - "5060:5060/tcp"
+      - "8088:8088"
+      - "10000-10100:10000-10100/udp"
+    volumes:
+      - ./asterisk/configs:/etc/asterisk
+      - ./asterisk/recordings:/var/spool/asterisk/monitor
+
+    networks:
+      - backend
+
+    restart: unless-stopped
+
 
 volumes:
 
